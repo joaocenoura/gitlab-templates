@@ -1,0 +1,9 @@
+build:
+  services:
+    - name: docker:19.03.5-dind
+      command:
+        - /bin/sh
+        - -c
+        - |
+          echo "$CI_SERVER_TLS_CA_FILE" > /etc/ssl/certs/custom-ca.crt || exit
+          dockerd-entrypoint.sh || exit
